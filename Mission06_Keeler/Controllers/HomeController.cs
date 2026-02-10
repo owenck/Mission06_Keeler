@@ -1,4 +1,3 @@
-using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
 using Mission06_Keeler.Models;
 
@@ -15,10 +14,14 @@ public class HomeController : Controller
     {
         return View();
     }
-
-    [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-    public IActionResult Error()
+    [HttpGet]
+    public IActionResult AddMovie()
     {
-        return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+        return View();
+    }
+    [HttpPost]
+    public IActionResult AddMovie(Movie movie)
+    {
+        return View("Confirmation", movie);
     }
 }
