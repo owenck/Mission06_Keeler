@@ -22,9 +22,9 @@ public class Movie
     [Required]
     public string Rating { get; set; }
 
-    public bool? Edited  { get; set; }
-    public string? LentTo { get; set; }
+    public bool? Edited  { get; set; } // Optional: whether the movie has been edited
+    public string? LentTo { get; set; } // Optional: who the movie is lent to
 
     [StringLength(25)]
-    public string? Notes { get; set; }
+    public string? Notes { get; set; } // Optional: short notes with a length cap
 }

@@ -6,7 +6,7 @@ namespace Mission06_Keeler.Controllers;
 public class HomeController : Controller
 {
     private MovieCollectionContext _context;
-    public HomeController(MovieCollectionContext context) //Constructor
+    public HomeController(MovieCollectionContext context) // DI-provided EF Core context
     {
         _context = context;
     }
@@ -27,9 +27,9 @@ public class HomeController : Controller
     [HttpPost]
     public IActionResult AddMovie(Movie movie)
     {
-        _context.Movies.Add(movie); //Add record to the database
+        _context.Movies.Add(movie); // Persist the posted movie to the database
         _context.SaveChanges();
         
-        return View("Confirmation", movie);
+        return View("Confirmation", movie); // Show the submitted movie back to the user
     }
 }

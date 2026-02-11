@@ -8,6 +8,7 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<MovieCollectionContext>(options =>
 {
+    // Configure EF Core to use the SQLite connection string from appsettings.json
     options.UseSqlite(builder.Configuration.GetConnectionString("MyConnection"));
 });
 
@@ -28,6 +29,7 @@ app.UseAuthorization();
 
 app.MapStaticAssets();
 
+// Default MVC route for controller/actions
 app.MapControllerRoute(
         name: "default",
         pattern: "{controller=Home}/{action=Index}/{id?}")

@@ -9,5 +9,5 @@ public class MovieCollectionContext : DbContext
         
     }
     
-    public DbSet<Movie> Movies { get; set; }
+    public DbSet<Movie> Movies { get; set; } // Table for movie records
 }
