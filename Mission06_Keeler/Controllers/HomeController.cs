@@ -5,6 +5,11 @@ namespace Mission06_Keeler.Controllers;
 
 public class HomeController : Controller
 {
+    private MovieCollectionContext _context;
+    public HomeController(MovieCollectionContext context) //Constructor
+    {
+        _context = context;
+    }
     public IActionResult Index()
     {
         return View();
@@ -22,6 +27,9 @@ public class HomeController : Controller
     [HttpPost]
     public IActionResult AddMovie(Movie movie)
     {
+        _context.Movies.Add(movie); //Add record to the database
+        _context.SaveChanges();
+        
         return View("Confirmation", movie);
     }
 }
