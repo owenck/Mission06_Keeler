@@ -23,11 +23,11 @@ public class Movie
     public string? Rating { get; set; }
 
     [Required]
-    public bool Edited  { get; set; } // whether the movie has been edited
+    public bool? Edited  { get; set; } // whether the movie has been edited
     public string? LentTo { get; set; } // Optional: who the movie is lent to
     
     [Required]
-    public bool CopiedToPlex { get; set; }
+    public bool? CopiedToPlex { get; set; }
     
     [StringLength(25)]
     public string? Notes { get; set; } // Optional: short notes with a length cap

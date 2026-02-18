@@ -5,11 +5,14 @@ namespace Mission06_Keeler.Controllers;
 
 public class HomeController : Controller
 {
-    private MovieCollectionContext _context;
-    public HomeController(MovieCollectionContext context) // DI-provided EF Core context
+    private readonly MovieCollectionContext _context;
+
+    // DI-provided EF Core context.
+    public HomeController(MovieCollectionContext context)
     {
         _context = context;
     }
+
     public IActionResult Index()
     {
         return View();
@@ -19,28 +22,29 @@ public class HomeController : Controller
     {
         return View();
     }
+
     [HttpGet]
     public IActionResult AddMovie()
     {
+        // Populate categories for the form dropdown.
         ViewBag.Categories = _context.Categories.ToList();
         return View(new Movie());
     }
+
     [HttpPost]
     public IActionResult AddMovie(Movie movie)
     {
         if (ModelState.IsValid)
         {
-             _context.Movies.Add(movie); // Persist the posted movie to the database
-             _context.SaveChanges();
-                    
-             return View("Confirmation", movie); // Show the submitted movie back to the user
+            _context.Movies.Add(movie); // Persist the posted movie to the database.
+            _context.SaveChanges();
+
+            return View("Confirmation", movie); // Show the submitted movie back to the user.
         }
-        else
-        {
-            ViewBag.Categories = _context.Categories.ToList();
-            
-            return View(movie);
-        }
+
+        // Reload categories when redisplaying the form after validation errors.
+        ViewBag.Categories = _context.Categories.ToList();
+        return View(movie);
     }
 
     public IActionResult ViewMovies()
@@ -53,6 +57,7 @@ public class HomeController : Controller
     public IActionResult Edit(int id)
     {
         var recordToEdit = _context.Movies.Single(m => m.MovieId == id);
+        // Populate categories for the form dropdown.
         ViewBag.Categories = _context.Categories.ToList();
         return View("AddMovie", recordToEdit);
     }
@@ -67,13 +72,10 @@ public class HomeController : Controller
             
             return RedirectToAction("ViewMovies");
         }
-        else
-        {
-            ViewBag.Categories = _context.Categories.ToList();
-            
-            return View("AddMovie", recordToEdit);
-        }
-        
+
+        // Reload categories when redisplaying the form after validation errors.
+        ViewBag.Categories = _context.Categories.ToList();
+        return View("AddMovie", recordToEdit);
     }
 
     [HttpGet]
