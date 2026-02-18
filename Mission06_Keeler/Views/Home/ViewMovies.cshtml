@@ -1,0 +1,41 @@
+@model List<Movie>
+
+@{
+    ViewData["Title"] = "Movie Collection";
+}
+
+<table class="table table-primary">
+    <thead class="fw-bolder">
+        <tr>
+            <td>MovieId</td>
+            <td>CategoryId</td>
+            <td>Title</td>
+            <td>Year</td>
+            <td>Director</td>
+            <td>Rating</td>
+            <td>Edited</td>
+            <td>Lent to</td>
+            <td>Copied to Plex</td>
+            <td>Notes</td>
+        </tr>
+    </thead>
+    
+    @foreach (var m in Model)
+    {
+        <tbody>
+            <tr>
+                <td>@m.MovieId</td>
+                <td>@m.CategoryId</td>
+                <td>@m.Title</td>
+                <td>@m.Year</td>
+                <td>@m.Director</td>
+                <td>@m.Rating</td>
+                <td>@m.Edited</td>
+                <td>@m.LentTo</td>
+                <td>@m.CopiedToPlex</td>
+                <td>@m.Notes</td>
+            </tr>
+        </tbody>
+    }
+    
+</table>

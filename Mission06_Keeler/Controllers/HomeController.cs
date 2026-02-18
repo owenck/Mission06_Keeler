@@ -22,6 +22,7 @@ public class HomeController : Controller
     [HttpGet]
     public IActionResult AddMovie()
     {
+        ViewBag.Categories = _context.Categories.ToList();
         return View();
     }
     [HttpPost]
@@ -31,5 +32,11 @@ public class HomeController : Controller
         _context.SaveChanges();
         
         return View("Confirmation", movie); // Show the submitted movie back to the user
+    }
+
+    public IActionResult ViewMovies()
+    {
+        var movies = _context.Movies.ToList();
+        return View(movies);
     }
 }
