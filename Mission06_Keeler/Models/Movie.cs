@@ -10,12 +10,12 @@ public class Movie
     
     [ForeignKey("CategoryId")]
     public int? CategoryId { get; set; }
-    public Category Category { get; set; }
+    public Category? Category { get; set; }
     
     [Required]
     public string Title { get; set; }
 
-    [Required]
+    [Required] [Range(1888, 2026)]
     public int Year { get; set; }
     
     public string? Director { get; set; }

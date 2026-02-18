@@ -7,8 +7,6 @@
 <table class="table table-primary">
     <thead class="fw-bolder">
         <tr>
-            <td>MovieId</td>
-            <td>CategoryId</td>
             <td>Title</td>
             <td>Year</td>
             <td>Director</td>
@@ -17,6 +15,8 @@
             <td>Lent to</td>
             <td>Copied to Plex</td>
             <td>Notes</td>
+            <td></td>
+            <td></td>
         </tr>
     </thead>
     
@@ -24,8 +24,6 @@
     {
         <tbody>
             <tr>
-                <td>@m.MovieId</td>
-                <td>@m.CategoryId</td>
                 <td>@m.Title</td>
                 <td>@m.Year</td>
                 <td>@m.Director</td>
@@ -34,6 +32,9 @@
                 <td>@m.LentTo</td>
                 <td>@m.CopiedToPlex</td>
                 <td>@m.Notes</td>
+                
+                <td><a class="btn btn-info" asp-controller="Home" asp-action="Edit" asp-route-id="@m.MovieId">Edit</a></td>
+                <td><a class="btn btn-danger" asp-controller="Home" asp-action="Delete" asp-route-id="@m.MovieId">Delete</a></td>
             </tr>
         </tbody>
     }
